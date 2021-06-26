@@ -38,6 +38,15 @@ client.connect((err) => {
     });
   });
 
+  // to get blogs collection by Id
+  app.get("/blog/:id", (req, res) => {
+    collection
+      .find({ _id: ObjectId(req.params.id) })
+      .toArray((err, documents) => {
+        res.send(documents[0]);
+      });
+  });
+
   console.log("MongoDB connect successfully");
 });
 
